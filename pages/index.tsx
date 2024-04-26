@@ -13,12 +13,12 @@ const Home = () => {
     if (!file) return null;
     // @ts-ignore
     const fileType = encodeURIComponent(file.type);
-    const { data } = await axios.get(`/api/media?fileType=${fileType}`);
-    const { uploadUrl, key } = data;
+     // @ts-ignore
+    const fileName = encodeURIComponent(file.name);
+    const { data } = await axios.get(`/api/media?fileType=${fileType}&fileName=${fileName}`);
+    const { uploadUrl } = data;
 
     await axios.put(uploadUrl, file);
-
-    return key;
   };
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
