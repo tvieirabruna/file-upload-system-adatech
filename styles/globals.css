@@ -5,7 +5,11 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #181C23;
+  background-image: url(https://ada-site-frontend.s3.sa-east-1.amazonaws.com/home/home-background.svg);
+  background-size: contain;
+  background-position: right center;
+  background-repeat: no-repeat;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

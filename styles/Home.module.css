@@ -14,8 +14,10 @@
 }
 
 .title {
+  font-family: Ubuntu, sans-serif;
   font-size: 1rem;
   padding: 2rem 1rem;
+  color: #A3F24F;
 }
 
 .uploadContainer {
