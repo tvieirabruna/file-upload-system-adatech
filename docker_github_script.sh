@@ -29,7 +29,7 @@ sudo apt-get update
 # Clone the GitHub repository
 sudo apt-get install -y git
 cd /home/ubuntu
-git clone https://github.com/tvieirabruna/app-voting-observability.git
+git clone https://github.com/tvieirabruna/file-upload-system-adatech.git
 
 # Navigate to the Prometheus folder
 cd app-voting-observability/metrics/prometheus
