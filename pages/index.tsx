@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 
 const Home = () => {
   const [fileName, setFileName] = useState<string | null>(null);
+  const [uploadMessage, setUploadMessage] = useState<boolean>(false);
 
   const uploadToS3 = async (e: ChangeEvent<HTMLFormElement>) => {
     const formData = new FormData(e.target);
@@ -19,6 +20,11 @@ const Home = () => {
     const { uploadUrl } = data;
 
     await axios.put(uploadUrl, file);
+    setFileName(null);
+    setUploadMessage(true);
+    setTimeout(() => {
+      setUploadMessage(false)
+    }, 5000);
   };
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
@@ -73,6 +79,9 @@ const Home = () => {
           </button>
         </div>
       </form>
+      <h1 className={styles.title}>
+          {uploadMessage ? "Upload feito com sucesso!" : ""}
+        </h1>
     </main>
   );
 };
