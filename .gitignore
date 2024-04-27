@@ -35,4 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.env
+.envdocker_github_script.sh
+main.tf
+.github
