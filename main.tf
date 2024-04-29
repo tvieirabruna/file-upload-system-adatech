@@ -81,7 +81,7 @@ resource "aws_security_group" "web_access" {
 resource "aws_instance" "docker_instance" {
   ami           = "ami-080e1f13689e07408" 
   instance_type = "t2.medium" 
-  key_name      = "app-voting-pair-key"  # SSH key pair already created in AWS
+  key_name      = "file-upload-key-pair"  # SSH key pair already created in AWS
   security_groups = [aws_security_group.web_access.name]  # Security group setup
 
   # Give the instance a name using tags
