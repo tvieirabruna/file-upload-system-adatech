@@ -7,11 +7,22 @@ provider "aws" {
 resource "aws_s3_bucket" "s3_report_bucket" {
   bucket = "pre-signed-url-bucket-ada"
 
+  lifecycle {
+    ignore_changes = [
+      cors_rule
+    ]
+  }
+}
+
+resource "aws_s3_bucket_cors_configuration" "s3_report_bucket_cors" {
+  bucket = aws_s3_bucket.s3_report_bucket.id  # Reference the bucket ID
+
   cors_rule {
-    allowed_methods = ["PUT"]  # Add required methods
-    allowed_origins = ["*"]  # Allow your frontend origin
-    allowed_headers = ["*"]  # Headers allowed in the request
-    expose_headers  = []  # Headers to expose to the client
+    allowed_methods = ["PUT"]  # Adjust as needed
+    allowed_origins = ["*"]  # Add all necessary origins
+    allowed_headers = ["*"]
+    expose_headers  = []  # Headers that should be exposed
+    max_age_seconds = 3600  # Cache duration for preflight requests
   }
 }
 
