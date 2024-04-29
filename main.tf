@@ -12,6 +12,7 @@ resource "aws_s3_bucket" "s3_report_bucket" {
     allowed_origins = ["*"]  # Allow your frontend origin
     allowed_headers = ["*"]  # Headers allowed in the request
     expose_headers  = []  # Headers to expose to the client
+  }
 }
 
 # Create IAM role for EC2 with S3 permissions
