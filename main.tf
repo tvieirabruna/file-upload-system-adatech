@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "ec2_s3_policy_attachment" {
 }
 
 # Security group allowing SSH
-resource "aws_security_group" "web_access" {
+resource "aws_security_group" "nextjs_access" {
   name        = "web-access"
   description = "Allow SSH, HTTP, and HTTPS access"
 
