@@ -9,8 +9,8 @@ resource "aws_s3_bucket" "s3_report_bucket" {
 }
 
 # Create IAM role for EC2 with S3 permissions
-resource "aws_iam_role" "ec2_s3_iam_role" {
-  name = "ec2-s3-role"
+resource "aws_iam_role" "ec2_s3_role" {
+  name = "ec2-s3-iam-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -25,8 +25,8 @@ resource "aws_iam_role" "ec2_s3_iam_role" {
 }
 
 # Create an IAM Instance Profile and attach the role
-resource "aws_iam_instance_profile" "ec2_s3_profile" {
-  name = "ec2-s3-iam-profile"
+resource "aws_iam_instance_profile" "ec2_s3_instance_profile" {
+  name = "ec2-s3-instance-profile"
   role = aws_iam_role.ec2_s3_role.name  # Associate the role with the instance profile
 }
 
