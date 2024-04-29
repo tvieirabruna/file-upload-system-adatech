@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "s3_report_bucket" {
 # Security group allowing SSH
 resource "aws_security_group" "web_access" {
   name        = "fileupload_access"
-  description = "Allow SSH, HTTP, and HTTPS access"
+  description = "Allow SSH, HTTP, HTTPS and 3000 port access"
 
   ingress {
     from_port   = 22
