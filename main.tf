@@ -26,7 +26,7 @@ resource "aws_iam_role" "ec2_s3_role" {
 
 # Create an IAM Instance Profile and attach the role
 resource "aws_iam_instance_profile" "ec2_s3_instance_profile" {
-  name = "ec2-s3-instance-profile"
+  name = "ec2-s3-profile"
   role = aws_iam_role.ec2_s3_role.name  # Associate the role with the instance profile
 }
 
