@@ -14,8 +14,10 @@
 }
 
 .title {
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding: 2rem 1rem;
+  color: #A3F24F;
+  font-family: Ubuntu, sans-serif;
 }
 
 .uploadContainer {
@@ -42,6 +44,7 @@
   font-weight: 500;
   font-family: inherit;
   background-color: #27272a;
+  font-family: "Fira Code", monospace;
   transition: border-color 0.25s;
   cursor: pointer;
 }
@@ -77,7 +80,9 @@
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #3730a3;
+  font-family: "Fira Code", monospace;
+  color: #181C23;
+  background-color: #A3F24F;
   cursor: pointer;
   //transition: background-color 0.25s, color 0.25s;
   transition: border-color 0.25s, opacity 0.25s
