@@ -32,7 +32,7 @@ git clone https://github.com/tvieirabruna/file-upload-system-adatech.git
 cd file-upload-system-adatech
 
 # Build image
-docker build -t nextjs-docker .
+sudo docker build -t nextjs-docker .
 
 # Run Docker container
-docker run -p 3000:3000 nextjs-docker
+sudo docker run -p 3000:3000 nextjs-docker

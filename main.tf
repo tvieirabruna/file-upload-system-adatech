@@ -5,7 +5,13 @@ provider "aws" {
 
 # Create an S3 bucket
 resource "aws_s3_bucket" "s3_report_bucket" {
-  bucket = "pre-signed-url-bucket-ada" 
+  bucket = "pre-signed-url-bucket-ada"
+
+  cors_rule {
+    allowed_methods = ["PUT"]  # Add required methods
+    allowed_origins = ["*"]  # Allow your frontend origin
+    allowed_headers = ["*"]  # Headers allowed in the request
+    expose_headers  = []  # Headers to expose to the client
 }
 
 # Create IAM role for EC2 with S3 permissions
