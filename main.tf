@@ -15,34 +15,6 @@ resource "aws_s3_bucket" "s3_report_bucket" {
   }
 }
 
-# Create IAM role for EC2 with S3 permissions
-resource "aws_iam_role" "ec2_s3_role" {
-  name = "ec2-s3-iam-role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect    = "Allow",
-      Principal = {
-        Service = "ec2.amazonaws.com"
-      },
-      Action = "sts:AssumeRole"
-    }],
-  })
-}
-
-# Create an IAM Instance Profile and attach the role
-resource "aws_iam_instance_profile" "ec2_s3_instance_profile" {
-  name = "ec2-s3-profile"
-  role = aws_iam_role.ec2_s3_role.name  # Associate the role with the instance profile
-}
-
-# Attach S3 read/write policy to the IAM role
-resource "aws_iam_role_policy_attachment" "ec2_s3_policy_attachment" {
-  role       = aws_iam_role.ec2_s3_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess" 
-}
-
 # Security group allowing SSH
 resource "aws_security_group" "web_access" {
   name        = "fileupload_access"
