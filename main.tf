@@ -86,7 +86,7 @@ resource "aws_iam_role" "s3_access_role" {
 
 # Create an IAM policy that allows your EC2 instance to interact with S3
 resource "aws_iam_policy" "s3_access_policy" {
-  name        = "s3-access-policy"
+  name        = "ec2-s3-access-policy"
   description = "Policy for EC2 instance to access S3"
 
   policy = jsonencode({
