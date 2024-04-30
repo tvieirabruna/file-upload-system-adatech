@@ -69,7 +69,7 @@ resource "aws_security_group" "web_access" {
 
 # Define an IAM role with an appropriate policy to grant access to S3
 resource "aws_iam_role" "ec2_s3_access_role" {
-  name = "ec2-file-upload-s3-access-role"
+  name = "ec2-s3-access-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -82,6 +82,12 @@ resource "aws_iam_role" "ec2_s3_access_role" {
       }
     ]
   })
+}
+
+# Create an IAM Instance Profile and attach the role
+resource "aws_iam_instance_profile" "ec2_s3_instance_profile" {
+  name = "ec2-s3-file-upload-profile"
+  role = aws_iam_role.ec2_s3_role.name  # Associate the role with the instance profile
 }
 
 # Create an IAM policy that allows your EC2 instance to interact with S3
@@ -112,12 +118,6 @@ resource "aws_iam_policy" "s3_access_policy" {
 resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
   role       = aws_iam_role.ec2_s3_access_role.name
   policy_arn = aws_iam_policy.s3_access_policy.arn
-}
-
-# Create the instance profile
-resource "aws_iam_instance_profile" "ec2_s3_access_profile" {
-  name = "ec2-file-upload-s3-access-profile" 
-  role = aws_iam_role.ec2_s3_access_role.name  
 }
 
 # EC2 instance with Docker and GitHub repo cloned
