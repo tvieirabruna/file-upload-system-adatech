@@ -33,3 +33,6 @@ cd file-upload-system-adatech
 
 # Build image
 sudo docker build -t nextjs-docker .
+
+# Run docker
+sudo docker run -p 3000:3000 nextjs-docker
