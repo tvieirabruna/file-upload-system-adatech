@@ -18,7 +18,7 @@ resource "aws_s3_bucket_cors_configuration" "s3_report_bucket_cors" {
   bucket = aws_s3_bucket.s3_report_bucket.id
 
   cors_rule {
-    allowed_methods = ["OPTIONS", "PUT"] 
+    allowed_methods = ["PUT"] 
     allowed_origins = ["*"]  # Add all necessary origins
     allowed_headers = ["*"]
     expose_headers  = []  # Headers that should be exposed
