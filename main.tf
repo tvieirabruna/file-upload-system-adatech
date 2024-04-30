@@ -126,7 +126,7 @@ resource "aws_instance" "docker_instance" {
   instance_type = "t2.medium" 
   key_name      = "file-upload-key-pair"  # SSH key pair already created in AWS
   security_groups = [aws_security_group.web_access.name]  # Security group setup
-  iam_instance_profile = aws_iam_role.ec2_s3_access_role.name  # Attach the IAM role to EC2 instance
+  iam_instance_profile = aws_iam_role.ec2_s3_instance_profile.name  # Attach the IAM role to EC2 instance
 
   # Give the instance a name using tags
   tags = {
