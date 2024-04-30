@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "s3_report_bucket" {
 }
 
 resource "aws_s3_bucket_cors_configuration" "s3_report_bucket_cors" {
-  bucket = aws_s3_bucket.s3_report_bucket.id  # Reference the bucket ID
+  bucket = aws_s3_bucket.s3_report_bucket.id
 
   cors_rule {
     allowed_methods = ["PUT"] 
