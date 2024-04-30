@@ -21,7 +21,7 @@ resource "aws_s3_bucket_cors_configuration" "s3_report_bucket_cors" {
     allowed_methods = ["PUT"]  # Adjust as needed
     allowed_origins = ["*"]  # Add all necessary origins
     allowed_headers = ["*"]
-    expose_headers  = ["ETag"]  # Headers that should be exposed
+    expose_headers  = ["ETag", "x-amz-request-id", "x-amz-id-2"]  # Headers that should be exposed
     max_age_seconds = 3600  # Cache duration for preflight requests
   }
 }
