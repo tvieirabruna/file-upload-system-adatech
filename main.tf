@@ -68,8 +68,8 @@ resource "aws_security_group" "web_access" {
 }
 
 # Define an IAM role with an appropriate policy to grant access to S3
-resource "aws_iam_role" "s3_access_role" {
-  name = "ec2-s3-access-role"
+resource "aws_iam_role" "ec2_s3_access_role" {
+  name = "ec2-file-upload-s3-access-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -110,7 +110,7 @@ resource "aws_iam_policy" "s3_access_policy" {
 
 # Attach the policy to the IAM role created earlier to grant the EC2 instance S3 access
 resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
-  role       = aws_iam_role.s3_access_role.name
+  role       = aws_iam_role.ec2_s3_access_role.name
   policy_arn = aws_iam_policy.s3_access_policy.arn
 }
 
@@ -120,7 +120,7 @@ resource "aws_instance" "docker_instance" {
   instance_type = "t2.medium" 
   key_name      = "file-upload-key-pair"  # SSH key pair already created in AWS
   security_groups = [aws_security_group.web_access.name]  # Security group setup
-  iam_instance_profile = aws_iam_role.s3_access_role.name  # Attach the IAM role to EC2 instance
+  iam_instance_profile = aws_iam_role.ec2_s3_access_role.name  # Attach the IAM role to EC2 instance
 
   # Give the instance a name using tags
   tags = {
