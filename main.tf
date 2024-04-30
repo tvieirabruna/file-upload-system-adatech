@@ -69,7 +69,7 @@ resource "aws_security_group" "web_access" {
 
 # Define an IAM role with an appropriate policy to grant access to S3
 resource "aws_iam_role" "s3_access_role" {
-  name = "s3-access-role"
+  name = "ec2-s3-access-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
