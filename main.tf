@@ -67,12 +67,60 @@ resource "aws_security_group" "web_access" {
   }
 }
 
+# Define an IAM role with an appropriate policy to grant access to S3
+resource "aws_iam_role" "s3_access_role" {
+  name = "s3-access-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# Create an IAM policy that allows your EC2 instance to interact with S3
+resource "aws_iam_policy" "s3_access_policy" {
+  name        = "s3-access-policy"
+  description = "Policy for EC2 instance to access S3"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          "arn:aws:s3:::pre-signed-url-bucket-ada",
+          "arn:aws:s3:::pre-signed-url-bucket-ada/*"
+        ]
+      }
+    ]
+  })
+}
+
+# Attach the policy to the IAM role created earlier to grant the EC2 instance S3 access
+resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
+  role       = aws_iam_role.s3_access_role.name
+  policy_arn = aws_iam_policy.s3_access_policy.arn
+}
+
 # EC2 instance with Docker and GitHub repo cloned
 resource "aws_instance" "docker_instance" {
   ami           = "ami-080e1f13689e07408" 
   instance_type = "t2.medium" 
   key_name      = "file-upload-key-pair"  # SSH key pair already created in AWS
   security_groups = [aws_security_group.web_access.name]  # Security group setup
+  iam_instance_profile = aws_iam_role.s3_access_role.name  # Attach the IAM role to EC2 instance
 
   # Give the instance a name using tags
   tags = {

@@ -13,15 +13,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === 'PUT') {
-    // Handle preflight
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'PUT');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.status(200).end();
-    return;
-  }
-
   const contentType = (req.query.fileType as string)
   const contentName = (req.query.fileName as string)
   const Key = contentName;

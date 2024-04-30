@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt upgrade
+sudo apt-get upgrade
 sudo apt-get update
 
 # Install Docker in Ubuntu
@@ -33,6 +33,3 @@ cd file-upload-system-adatech
 
 # Build image
 sudo docker build -t nextjs-docker .
-
-# Run Docker container
-sudo docker run -p 3000:3000 nextjs-docker
