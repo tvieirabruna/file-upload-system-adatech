@@ -114,6 +114,12 @@ resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
   policy_arn = aws_iam_policy.s3_access_policy.arn
 }
 
+# Create the instance profile
+resource "aws_iam_instance_profile" "ec2_s3_access_profile" {
+  name = "ec2-file-upload-s3-access-profile" 
+  role = aws_iam_role.ec2_s3_access_role.name  
+}
+
 # EC2 instance with Docker and GitHub repo cloned
 resource "aws_instance" "docker_instance" {
   ami           = "ami-080e1f13689e07408" 
