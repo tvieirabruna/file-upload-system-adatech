@@ -87,7 +87,7 @@ resource "aws_iam_role" "ec2_s3_access_role" {
 # Create an IAM Instance Profile and attach the role
 resource "aws_iam_instance_profile" "ec2_s3_instance_profile" {
   name = "ec2-s3-file-upload-profile"
-  role = aws_iam_role.ec2_s3_role.name  # Associate the role with the instance profile
+  role = aws_iam_role.ec2_s3_access_role.name  # Associate the role with the instance profile
 }
 
 # Create an IAM policy that allows your EC2 instance to interact with S3
