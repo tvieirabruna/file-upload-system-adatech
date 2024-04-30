@@ -13,6 +13,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.method === 'OPTIONS') {
+    // Handle preflight
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    res.status(200).end();  // Terminate the preflight response
+    return;
+  }
+  
   const contentType = (req.query.fileType as string)
   const contentName = (req.query.fileName as string)
   const Key = contentName;
